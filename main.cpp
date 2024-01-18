@@ -19,7 +19,30 @@
 const std::string defaultInputFile = "input.txt";
 const std::string defaultOutputFile = "output.txt";
 
-void demo(bool openInputFile, std::string inputFilename,bool openOutputFile, std::string outputFilename)
+void demo_strings()
+{
+    // Creating an empty string
+    std::cout << std::endl << "String examples" << std::endl;
+    std::string myString;
+    std::cout << "myString = " << myString << std::endl;
+    std::cout << "myString.empty(): " << std::boolalpha << myString.empty() << std::endl;
+
+    // Creating a string with an initialized value
+    std::string myCourse("Data Structures");
+    std::cout << myCourse << std::endl;
+    std::cout << "myCourse.at(2): " << myCourse.at(2) << std::endl;
+
+    // Concatenating strings
+    std::string myFullCourse = myCourse + " (CSCI 2320)";
+    std::cout << myFullCourse << std::endl;
+
+    // Getting a c-style string (char array) from a string
+    const char* myCourseCString = myCourse.c_str();
+    std::cout << "myCourseCString = " << myCourseCString << std::endl;
+
+}
+
+void demo_io(bool openInputFile, std::string inputFilename,bool openOutputFile, std::string outputFilename)
 {
     // Save the original stream buffers for cout and cin
     std::streambuf* stream_buffer_cout = std::cout.rdbuf();
@@ -92,7 +115,7 @@ int main(int argc, char** argv)
     // option 1 - accept user input
     // ./main
     // option 2 - accept input from file (ONLY WORKS ON LINUX)
-    // cat ./input.txt | ./main
+    // cat ./input.txt | ./main 
     // option 3 - open an input file by name
     // ./main ./input.txt
     // option 4 - open an input file by name and output to a file
@@ -120,6 +143,7 @@ int main(int argc, char** argv)
     }
 
     std::cout << std::endl;
-    demo(openInputFile, inputFilename, openOutputFile, outputFilename);
+    demo_io(openInputFile, inputFilename, openOutputFile, outputFilename);
+    demo_strings();
     return 0;
 }
