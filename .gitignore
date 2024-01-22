@@ -7,7 +7,7 @@
 main
 tests
 main.exe
-
+output.txt*
 .vscode
 *.dSYM
 build

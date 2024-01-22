@@ -19,6 +19,7 @@
 const std::string defaultInputFile = "input.txt";
 const std::string defaultOutputFile = "output.txt";
 
+// Demo string behavior
 void demo_strings()
 {
     // Creating an empty string
@@ -40,8 +41,36 @@ void demo_strings()
     const char* myCourseCString = myCourse.c_str();
     std::cout << "myCourseCString = " << myCourseCString << std::endl;
 
+    std::cout << "myCourse[3] = " << myCourse[3] << std::endl;
 }
 
+// Demo opening, reading, writing, and closing files
+void demo_io2(std::string inputFilename, std::string outputFilename2)
+{
+        std::cout << "Reading: " << inputFilename << std::endl;
+        std::cout << "Writing: " << outputFilename2 << std::endl;
+
+        std::ifstream inputFile(inputFilename);
+        std::ofstream outputFile(outputFilename2);
+
+        if (!inputFile) {
+            std::cerr << "Unable to open input file: " << inputFilename << std::endl;
+            return;
+        }
+
+        if (!outputFile) {
+            std::cerr << "Unable to open output file 2: " << outputFilename2 << std::endl;
+            return;
+        }
+
+        std::string line;
+        while (std::getline(inputFile, line)) {
+            outputFile << line << '\n';
+        }
+    }
+    
+
+// Demo cin and cout
 void demo_io(bool openInputFile, std::string inputFilename,bool openOutputFile, std::string outputFilename)
 {
     // Save the original stream buffers for cout and cin
@@ -93,9 +122,10 @@ void demo_io(bool openInputFile, std::string inputFilename,bool openOutputFile, 
     {
         // restore cin to standard input
         std::cin.rdbuf(stream_buffer_cin);
-        if (openInputFile) 
+        if (openOutputFile)
         {
-            std::cin.rdbuf(stream_buffer_cout);
+            // restore cout to standard input
+            std::cout.rdbuf(stream_buffer_cout);
         }
     }
     else 
@@ -121,6 +151,7 @@ int main(int argc, char** argv)
     // option 4 - open an input file by name and output to a file
     // ./main ./input.txt ./output.txt
     
+
     if (argc > 0)
     {
         std::cout << "argc = " << argc << std::endl;
@@ -142,6 +173,12 @@ int main(int argc, char** argv)
         return(1);
     }
 
+    std::cout << std::endl;
+    if (openInputFile)
+    {
+        std::string outputFilename2 = outputFilename + "2";
+        demo_io2(inputFilename, outputFilename2);
+    }
     std::cout << std::endl;
     demo_io(openInputFile, inputFilename, openOutputFile, outputFilename);
     demo_strings();
