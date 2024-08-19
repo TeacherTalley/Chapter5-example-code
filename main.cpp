@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include <string>
 /**
 * ---------------------------------------------------------------------
 * @copyright
@@ -64,7 +65,7 @@ void demo_io2(std::string inputFilename, std::string outputFilename2)
         }
 
         std::string line;
-        while (std::getline(inputFile, line)) {
+        while (getline(inputFile, line)) {
             outputFile << line << '\n';
         }
     }
