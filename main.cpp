@@ -12,7 +12,7 @@
 *
 * @file main.cpp
 * @brief Driver program for Chapter 5 Example code
-*        Demonstrates uslse of cin and cout
+*        Demonstrates use of cin and cout
 *        Demonstrates use of string
 -----------------------------------------------------------------------
 */
